@@ -104,6 +104,11 @@ const propTypes = {
    * @private
    */
   isChild: PropTypes.bool,
+
+  /**
+   * Changes the animated propery from width (default) to height
+   */
+  vertical: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -113,6 +118,7 @@ const defaultProps = {
   isChild: false,
   srOnly: false,
   striped: false,
+  vertical: false,
 };
 
 function getPercentage(now, min, max) {
@@ -133,6 +139,7 @@ class ProgressBar extends React.Component {
     style,
     variant,
     bsPrefix,
+    vertical,
     ...props
   }) {
     return (
@@ -144,7 +151,11 @@ class ProgressBar extends React.Component {
           [`${bsPrefix}-bar-animated`]: animated,
           [`${bsPrefix}-bar-striped`]: animated || striped,
         })}
-        style={{ width: `${getPercentage(now, min, max)}%`, ...style }}
+        style={
+          vertical
+            ? { height: `${getPercentage(now, min, max)}%`, ...style }
+            : { width: `${getPercentage(now, min, max)}%`, ...style }
+        }
         aria-valuenow={now}
         aria-valuemin={min}
         aria-valuemax={max}
