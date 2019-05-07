@@ -11,6 +11,7 @@ export interface ProgressBarProps {
   striped?: boolean;
   animated?: boolean;
   variant?: 'success' | 'danger' | 'warning' | 'info';
+  vertical?: boolean;
 }
 
 declare class ProgressBar extends BsPrefixComponent<'div', ProgressBarProps> {}
